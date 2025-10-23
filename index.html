@@ -69,7 +69,7 @@ function updateCountdown() {
   const lebanonNow = new Date(utcNow + lebanonOffset * 60000);
 
   const targetTime = new Date();
-targetTime.setHours(21, 30, 0, 0); // 9:30 PM
+  targetTime.setHours(21, 30, 0, 0); // 9:30 PM
 
   if (lebanonNow > target) target.setDate(target.getDate() + 1);
 
