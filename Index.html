@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Countdown to 9 PM Lebanon</title>
+<style>
+  body {
+    background: radial-gradient(circle at top, #0d0d0d, #000);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #00eaff;
+    text-shadow: 0 0 20px #00eaff;
+  }
+  .countdown {
+    display: flex;
+    gap: 15px;
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .time {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 20px;
+    min-width: 90px;
+    box-shadow: 0 0 20px #00eaff;
+    transition: transform 0.2s;
+  }
+  .time:hover {
+    transform: scale(1.1);
+  }
+  span.label {
+    display: block;
+    font-size: 0.6em;
+    margin-top: 10px;
+    opacity: 0.7;
+  }
+  .finished {
+    font-size: 2em;
+    color: #00ff99;
+    text-shadow: 0 0 20px #00ff99;
+  }
+</style>
+</head>
+<body>
+
+<h1>Countdown to 9:00 PM Lebanon Time 🇱🇧</h1>
+<div id="countdown" class="countdown">
+  <div class="time"><span id="hours">00</span><span class="label">HRS</span></div>
+  <div class="time"><span id="minutes">00</span><span class="label">MIN</span></div>
+  <div class="time"><span id="seconds">00</span><span class="label">SEC</span></div>
+</div>
+
+<script>
+function updateCountdown() {
+  const now = new Date();
+  const lebanonOffset = 3 * 60; // UTC+3
+  const utcNow = now.getTime() + now.getTimezoneOffset() * 60000;
+  const lebanonNow = new Date(utcNow + lebanonOffset * 60000);
+
+  const target = new Date(lebanonNow);
+  target.setHours(21, 0, 0, 0); // 9 PM
+
+  if (lebanonNow > target) target.setDate(target.getDate() + 1);
+
+  const diff = target - lebanonNow;
+
+  if (diff <= 0) {
+    document.getElementById("countdown").innerHTML = "<div class='finished'>🎉 It's 9:00 PM! 🎉</div>";
+    return;
+  }
+
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>
