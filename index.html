@@ -54,7 +54,7 @@
 </head>
 <body>
 
-<h1>Countdown to Da2 Kanastra Lebanon Time 🇱🇧</h1>
+<h1> Da2 Kanastra sar 9:30pm kermel estez Alex Nehme</h1>
 <div id="countdown" class="countdown">
   <div class="time"><span id="hours">00</span><span class="label">HRS</span></div>
   <div class="time"><span id="minutes">00</span><span class="label">MIN</span></div>
@@ -68,8 +68,8 @@ function updateCountdown() {
   const utcNow = now.getTime() + now.getTimezoneOffset() * 60000;
   const lebanonNow = new Date(utcNow + lebanonOffset * 60000);
 
-  const target = new Date(lebanonNow);
-  target.setHours(21, 0, 0, 0); // 9 PM
+  const targetTime = new Date();
+targetTime.setHours(21, 30, 0, 0); // 9:30 PM
 
   if (lebanonNow > target) target.setDate(target.getDate() + 1);
 
